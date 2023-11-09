@@ -651,6 +651,59 @@ categorical_data
 
 
 
+### G. Apply PCA with your chosen number of components. Write up a short profile of the first few components extracted based on your understanding.
+
+
+```{r}
+
+# With Min - Max Scaling
+# Using cbind() to combine data frames column-wise
+minmax_df <- cbind(categorical_data, scaled_data_minmax)
+
+# Apply PCA with your chosen number of components (e.g., 2 components)
+num_components <- 3
+pca_minmax_df <- prcomp(minmax_df, center = TRUE, scale. = TRUE)
+minmax_df_pca <- as.data.frame(pca_minmax_df$x[, 1:num_components])
+minmax_df_pca
+
+```
+
+
+
+
+
+```{r}
+
+# Using cbind() to combine data frames column-wise
+z_score_df <- cbind(categorical_data, z_score_standardized_data)
+
+# Apply PCA with your chosen number of components (e.g., 2 components)
+num_components <- 3
+pca_z_score_df <- prcomp(z_score_df, center = TRUE, scale. = TRUE)
+z_score_df_pca <- as.data.frame(pca_z_score_df$x[, 1:num_components])
+z_score_df_pca
+
+```
+
+
+
+
+```{r}
+
+# Using cbind() to combine data frames column-wise
+robust_scalar_df <- cbind(categorical_data, robust_scalar_data)
+
+# Apply PCA with your chosen number of components (e.g., 2 components)
+num_components <- 3
+pca_robust_scalar_df <- prcomp(robust_scalar_df, center = TRUE, scale. = TRUE)
+robust_scalar_df_pca <- as.data.frame(pca_robust_scalar_df$x[, 1:num_components])
+robust_scalar_df_pca
+
+```
+
+
+
+
 
 
 
