@@ -322,6 +322,90 @@ ggplot(data, aes(x = date)) +
 ```
 
 
+#### Line Chart of Total Cases VS Total Deaths With Time
+
+
+```{r}
+
+# Convert 'date' column to Date type if it's not already
+ggplot(data, aes(x = date)) +
+  geom_line(aes(y = total_cases, color = "total cases")) +
+  geom_line(aes(y = total_deaths, color = "total deaths")) +
+  scale_color_manual(values = c("total cases" = "red", "total deaths" = "green")) +
+  labs(title = "Total Cases and Total Deaths Over Time", x = "Date", y = "Number of Cases", color = "Legend") +
+  theme_minimal()
+
+```
+
+
+#### Scatter Plots
+
+
+#### Scatter Plot of Total Deaths Vs Total Cases
+
+
+
+```{r}
+
+# Plot scatter plot of 'total_cases' vs 'total_deaths' with different colors for each data point
+ggplot(data, aes(x = total_cases, y = total_deaths, color = factor(continent))) +
+  geom_point(size = 0.5) +
+  labs(title = "Scatter Plot of Total Cases vs Total Deaths", 
+       x = "Total Cases", y = "Total Deaths", color = "Continent") +
+  theme_minimal()
+
+```
+
+
+
+
+#### Heatmaps can be used to show the correlation between the features of the dataset
+
+
+```{r}
+
+# Compute a correlation matrix
+corr <- round(cor(numerical_data), 1)
+
+# Compute a matrix of correlation p-values
+p.mat <- cor_pmat(numerical_data)
+
+# Reordering the correlation matrix using hierarchical clustering
+ggcorrplot(corr, hc.order = TRUE)
+
+```
+
+
+
+
+```{r}
+
+# Barring the no significant coefficient
+ggcorrplot(corr, hc.order = TRUE, p.mat = p.mat)
+
+```
+
+
+```{r}
+
+# Calculate the correlation matrix
+correlation_matrix <- cor(numerical_data)
+
+# Reshape the correlation matrix for plotting
+correlation_data <- as.data.frame(as.table(correlation_matrix))
+colnames(correlation_data) <- c("Feature1", "Feature2", "Correlation")
+
+# Create a heatmap of the correlation matrix with rotated x-axis labels
+ggplot(data = correlation_data, aes(x = Feature1, y = Feature2, fill = Correlation)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "darkblue") +
+  labs(title = "Correlation Heatmap", x = "Feature 1", y = "Feature 2") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
 
 
 
