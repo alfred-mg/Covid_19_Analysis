@@ -1,0 +1,60 @@
+---
+title: "Covid !9 Analysis"
+author: "Group Work"
+date: "2023-11-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list = ls())
+
+```
+
+
+
+```{r, message=FALSE}
+
+# Load required libraries
+library(tidyverse)
+library(lares) # show the structure of data
+library(vtable) # show the mean, sd, min, max
+library(caret) 
+library(psycho) # Standardizing
+library('DescTools')
+library(ggcorrplot)
+library(plotly) # Using plotly for interactive plots
+library(fastDummies) # for dummy encoding
+
+```
+
+
+
+## About the Dataset
+
+The data is about Coronavirus (COVID-19) Vaccinations
+
+According to the website, the vaccination dataset uses the most recent official numbers from governments and health ministries worldwide. Population estimates for per-capita metrics are based on the United Nations World Population Prospects. Income groups are based on the World Bank classification. Source: https://ourworldindata.org/covid-vaccinations
+
+
+**NB: The dataset should have at least 7000 rows and 10 columns after cleaning and there is not any upper
+bound. The objectives of the DEP project are based on the domain knowledge of data. Need to complete
+the following tasks during the development of this project.**
+
+
+## Loading the Dataset
+
+
+```{r}
+
+# loading the data after downloading
+data <- read.csv('owid-covid-data.csv')
+
+dim(data)
+
+# overview of the data
+head(data, 5)
+
+str(data)
+
+```
