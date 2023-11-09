@@ -284,6 +284,42 @@ robust_scalar_data
 
 
 
+### D. Line, Scatter and Heatmaps can be used to show the correlation between the features of the dataset.
+
+
+#### Line Plots
+
+
+#### Total Cases vs Total Deaths
+
+
+```{r}
+
+# Basic line plot
+ggplot(data=data, aes(x=total_cases, y=total_deaths))+
+  geom_line(color= 'black') +
+  labs(title = "Scatter Plot of Total Cases vs Total Deaths")
+
+```
+
+
+
+#### Line Chart of New Deaths and New Deaths Smoothed
+
+
+```{r}
+
+# Convert 'date' column to Date type if it's not already
+data$date <- as.Date(data$date)
+# Plot 'new deaths' and 'new deaths smoothed' against dates with different colors for each line
+ggplot(data, aes(x = date)) +
+  geom_line(aes(y = new_deaths, color = "New deaths")) +
+  geom_line(aes(y = new_deaths_smoothed, color = "New deaths smoothed")) +
+  scale_color_manual(values = c("New deaths" = "blue", "New deaths smoothed" = "green")) +
+  labs(title = "New Deaths and New Deaths Smoothed Over Time", x = "Date", y = "Number of Cases", color = "Legend") +
+  theme_minimal()
+
+```
 
 
 
