@@ -235,7 +235,6 @@ st(numerical_data)
 ```
 
 
-
 ### C. Apply Min-Max Normalization, Z-score Standardization and Robust scalar on the numerical data variables.
 
 
