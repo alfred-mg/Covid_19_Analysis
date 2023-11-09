@@ -236,6 +236,24 @@ st(numerical_data)
 
 
 
+### C. Apply Min-Max Normalization, Z-score Standardization and Robust scalar on the numerical data variables.
+
+
+#### Min-Max Normalization
+
+
+```{r}
+
+# Apply Min-Max Normalization
+preproc <- preProcess(numerical_data, method = c("range"))
+scaled_data_minmax <- predict(preproc, numerical_data)
+scaled_data_minmax
+
+```
+
+
+
+
 
 
 
