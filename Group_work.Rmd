@@ -216,6 +216,23 @@ df_str(data, return = "plot")
 - reproduction_rate
 
 
+### B. Calculate the statistical parameters (mean, median, minimum, maximum, and standard deviation) for each of the numerical variables. 
+
+
+```{r}
+
+# Select numerical columns using indexing
+numerical_data <- data[sapply(data, is.numeric)]
+
+numerical_data  %>%
+      pivot_longer(everything()) %>%
+      group_by(name) %>%
+       summarise_at(vars(value), list(Mean = mean, Median = median, Min = min,  Max = max, Sd = sd))
+
+# getting the summary statistics
+st(numerical_data)
+
+```
 
 
 
