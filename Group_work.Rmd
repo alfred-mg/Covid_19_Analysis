@@ -62,6 +62,161 @@ str(data)
 
 
 
+### Checking for missing values
+
+
+```{r, message=FALSE, warning=FALSE}
+
+# Check for null values in the dataframe
+is_null <- is.na(data)
+
+# Count the number of null values in each column
+num_null_values <- colSums(is_null, na.rm = TRUE)
+
+# Print the number of null values in each column
+print(num_null_values)
+
+# show the details of the dataset
+df_str(data, return = "plot")
+
+```
+
+
+
+As we can see from the above output, there are columns with a very high number of null values. So the first thing would be to drop all the columns whose number of null values is more more than half the total number of rows, or observations.
+
+**Sometimes, R do not read empty strings, and question marks as nulls. So we first convert the Question marks and the empty strings as nulls then check the number of null values.
+
+
+
+```{r}
+
+# Replace question marks with NA in the entire dataframe
+data[data == "?"] <- NA
+
+# Replace empty strings with NA in the entire dataframe
+data[data == ""] <- NA
+
+# Check for null values in each column
+null_counts <- colSums(is.na(data))
+
+# Get columns where more than half of the values are null
+columns_to_drop <- names(null_counts[null_counts > nrow(data)/2])
+
+# Drop columns with more than half of the values being null
+data <- data[, !names(data) %in% columns_to_drop]
+
+dim(data)
+
+# Drop rows with NA values using na.omit()
+data <- na.omit(data)
+
+# Check for null values in the dataframe
+is_null <- is.na(data)
+
+# Count the number of null values in each column
+num_null_values <- colSums(is_null, na.rm = TRUE)
+
+# Print the number of null values in each column
+print(num_null_values)
+
+View(data)
+```
+
+
+We can now see that we do not have any null values in the columns.
+
+
+### Dropping all the Null Values
+
+
+```{r}
+
+# Drop rows with NA values using na.omit()
+data_clean <- na.omit(data)
+
+# checking the shape of the data
+cat('The shape of the data:', dim(data_clean)[1], 'rows/observations', 'and', dim(data_clean)[2], 'columns')
+
+```
+
+
+The Dataset is already eligible for our analysis as it means the eligibility of 7000 and 10 columns
+
+
+
+
+### Removing Unwanted Columns
+
+
+```{r}
+
+# Removing a single column using subset() function
+data <- subset(data, select = -c(population, human_development_index, life_expectancy, 
+                                 hospital_beds_per_thousand, male_smokers, female_smokers,
+                                 diabetes_prevalence, cardiovasc_death_rate, gdp_per_capita,
+                                 aged_70_older, aged_65_older, median_age, population_density,
+                                 stringency_index, new_people_vaccinated_smoothed_per_hundred, 
+                                 new_vaccinations_smoothed_per_million, new_deaths_smoothed_per_million,
+                                 new_deaths_per_million, total_deaths_per_million, new_cases_smoothed_per_million,
+                                 new_cases_per_million, total_cases_per_million))
+
+dim(data)
+```
+
+
+
+### A. Identify which variables are categorical, discrete and continuous in the chosen data set and show using some visualization or plot. Explore whether there are missing values for any of the variables.
+
+
+
+```{r}
+
+# Remove all instances of 0 from all columns
+data_no_zeros <- data
+data_no_zeros[data_no_zeros == 0] <- NA
+data <- na.omit(data_no_zeros)
+
+# Check data types of variables
+str(data)
+
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+
+# show the details of the dataset
+df_str(data, return = "plot")
+
+```
+
+### Identify which variables are categorical, discrete and continuous in the chosen data set
+
+
+* Categorical Variables
+
+- iso_code
+- continent
+- location
+- date
+
+
+* Discrete Variables
+
+- total_cases
+- new_cases
+- total_deaths
+- new_deaths
+- new_vaccinations_smoothed 
+- new_people_vaccinated_smoothed
+
+* Continous Variables
+
+- new_cases_smoothed
+- new_deaths_smoothed
+- reproduction_rate
+
+
 
 
 
