@@ -501,6 +501,155 @@ plot_ly(data, x = ~date, y = ~total_cases, color = ~continent, type = "scatter",
 
 
 
+#### Total Deaths Per Countries Per Continent
+
+
+#### European Countries
+
+
+```{r}
+
+# Filter data for Europe
+europe_data <- data %>% 
+  filter(continent == "Europe")
+
+# Bar plot for Europe
+ggplot(europe_data, aes(x = location, y = total_deaths, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d() +  # Use viridis color scale
+  labs(title = "Total Deaths in European Countries", x = "Countries", y = "Tota Deaths") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none")  # Remove the legend
+
+```
+
+
+#### Asian Countries
+
+
+```{r}
+
+# Filter data for Asia
+asia_data <- data %>% 
+  filter(continent == "Asia")
+
+# Bar plot for Asia
+ggplot(asia_data, aes(x = location, y = total_deaths, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d() +  # Use viridis color scale
+  labs(title = "Total Deaths in Asian Countries", x = "Countries", y = "Tota Deaths") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none")  # Remove the legend
+
+```
+
+
+#### African Countries
+
+
+```{r}
+
+# Filter data for Africa
+africa_data <- data %>% 
+  filter(continent == "Africa")
+
+# Bar plot for Africa
+ggplot(africa_data, aes(x = location, y = total_deaths, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d() +  # Use viridis color scale
+  labs(title = "Total Deaths in African Countries", x = "Countries", y = "Tota Deaths") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(legend.position = "none")  # Remove the legend
+
+```
+
+
+
+#### Oceania Countries
+
+
+```{r}
+
+# Filter data for Oceania
+Oceania_data <- data %>% 
+  filter(continent == "Oceania")
+
+# Bar plot for Oceania
+ggplot(Oceania_data, aes(x = location, y = total_deaths, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d() +  # Use viridis color scale
+  labs(title = "Total Deaths in Oceanic Countries", x = "Countries", y = "Tota Deaths") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "none")  # Remove the legend
+
+```
+
+
+#### South America Countries
+
+
+```{r}
+
+# Filter data for South America
+south.america_data <- data %>% 
+  filter(continent == "South America")
+
+# Bar plot for South America
+ggplot(south.america_data, aes(x = location, y = total_deaths, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d() +  # Use viridis color scale
+  labs(title = "Total Deaths in South American Countries", x = "Countries", y = "Tota Deaths") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "none")  # Remove the legend
+
+```
+
+
+#### North America Countries
+
+
+```{r}
+
+# Filter data for North America
+north.america_data <- data %>% 
+  filter(continent == "North America")
+
+# Bar plot for North America
+ggplot(north.america_data, aes(x = location, y = total_deaths, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis_d() +  # Use viridis color scale
+  labs(title = "Total Deaths in North American Countries", x = "Countries", y = "Tota Deaths") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "none")  # Remove the legend
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
